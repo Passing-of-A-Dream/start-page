@@ -1,7 +1,7 @@
 ## Y-tab 轻起始页
 
 ### 扩展介绍
- - 基于React18 + Antd5 + valtio构建的一个简易起始页。
+ - 基于React18、Antd5、valtio、TypeScript构建的一个简易起始页。
  - 启用后，此扩展会将空白页更改为起始页导航
 
 ### 兼容性
