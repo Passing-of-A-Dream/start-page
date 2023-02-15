@@ -28,7 +28,7 @@ out_dir: start-page-dist
 
 
 ### 更新
- - 0.0.1版本
+ 1. 0.0.1版本
    1. 暂时隐藏背景图修改
    2. 底部添加一言api
    3. bugfix
