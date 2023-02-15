@@ -1,0 +1,35 @@
+.Component-Layout {
+  height: 100vh;
+  width: 100vw;
+  .section-of-body {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: var(--aside-width) calc(100% - var(--aside-width));
+    .side-bar {
+      height: auto;
+      display: flex;
+      align-items: center;
+      // 改变文字方向
+      // writing-mode: vertical-rl;
+      margin-left: 4px;
+    }
+    .side-body {
+      width: calc(100% - var(--aside-width));
+      display: grid;
+      grid-template-rows: 20vh 50px calc(100vh - 20vh - 90px) 40px;
+      .time {
+        width: 100%;
+        display: grid;
+        place-items: center;
+      }
+      .footer {
+        color: 1rem;
+        color: #f2f2f2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+}

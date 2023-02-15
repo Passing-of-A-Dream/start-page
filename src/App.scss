@@ -1,0 +1,16 @@
+:root {
+  --pagebody-padding: 0px;
+  --pagebody-backgroundImage: url("/background.jfif");
+}
+
+.Page-Entrance-App {
+  height: calc(100vh - calc(2 * var(--pagebody-padding)));
+  width: calc(100vw - calc(2 * var(--pagebody-padding)));
+  padding: var(--pagebody-padding);
+  background: var(--pagebody-backgroundImage) no-repeat 0 0 fixed;
+  overflow: hidden;
+  // css变量
+  --aside-width: 64px;
+  --sideBar-background-color: 255, 255, 255;
+  --sideBar-background-colorOpacity: 0.3;
+}

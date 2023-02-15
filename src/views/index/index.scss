@@ -1,0 +1,78 @@
+.start-page-body-index {
+  // 修改滚动条
+
+  &[data-page-body] {
+    // background-color: #fff;
+    height: 100%;
+    overflow-y: scroll;
+  }
+  .bookmarks-container {
+    background: rgba($color: #eeeaea, $alpha: 0.1);
+    border-radius: 10px;
+    // 背景模糊
+    backdrop-filter: blur(10px);
+    .bookmarks-content {
+      margin-left: 20px;
+      display: flex;
+      align-items: center;
+      img {
+        width: 1rem;
+        height: 1rem;
+        margin-top: 5px;
+        margin-right: 5px;
+      }
+      // 图片和文字基线对齐
+      .bookmarks {
+        display: inline-block;
+        height: 26px;
+        line-height: 26px;
+        font-size: 16px;
+        padding: 10px 2px 2px 2px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #f4f4f4;
+        cursor: pointer;
+        transition: color .5s ease-in-out;
+        color: #1a1a1a;
+        position: relative;
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          // display: block;
+          width: 0;
+          height: 1px;
+          background-color: #3883f7;
+          margin-top: 5px;
+          transition: width .5s ease-in-out;
+        }
+        &:hover {
+          color: #3883f7;
+          &::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .ant-collapse-header-text {
+      font-size: 16px;
+      color: #1a1a1a;
+    }
+  }
+}
+// 滚动条宽高
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+// 滚动条滑块
+::-webkit-scrollbar-thumb {
+  background-color: #ffb6c1;
+  border-radius: 10px;
+}
+// 滚动条轨道
+::-webkit-scrollbar-track {
+  // background-color: #f2f2f2;
+  border-radius: 10px;
+}
