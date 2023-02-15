@@ -37,10 +37,10 @@ export function Theme(props: IThemeProps) {
               <span>主题颜色</span>
               <input type="color" value={colorValue} onChange={themeColorChange} />
             </div>
-            <div className="list-item">
+            {/* <div className="list-item">
               <span>背景图片</span>
               <Input size='small' placeholder='请输入链接地址' style={{ width: 200 }} />
-            </div>
+            </div> */}
           </div>
           <div className="action">
             <Button onClick={onResize}>重置</Button>
