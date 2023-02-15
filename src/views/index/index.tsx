@@ -28,7 +28,7 @@ export default function Index(props: IIndexProps) {
   const [resData, setResData] = React.useState<ChromeBookmarkTreeNode[]>([]) // 书签内容
   React.useEffect(() => {
     // 获取书签
-    chrome.bookmarks.getTree((res: ChromeBookmarkTreeNode[]) => {
+    chrome.bookmarks && chrome.bookmarks.getTree((res: ChromeBookmarkTreeNode[]) => {
       setResData(res)
     })
   }, [])
@@ -90,7 +90,7 @@ export default function Index(props: IIndexProps) {
 
   return (
     <div data-page-body="" className='start-page-body-index'>
-      <div>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
         {
           resData.length > 0 ? bookmarksData(resData[0]?.children) : <span>无法获取书签</span>
         }
