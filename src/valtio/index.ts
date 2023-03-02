@@ -15,16 +15,15 @@ type State = {
   dateSeconds: boolean,
   themeColor: string,
   // outOpen: boolean,
-  'outOpenSearch': boolean,
-  'outOpenBookmarks': boolean,
-  [key: string]: any,
+  outOpenSearch: boolean,
+  outOpenBookmarks: boolean,
 };
 
 const state = proxy<State>({
   dateSeconds: isLocalStorage('dateSeconds'), // 是否显示秒
   themeColor: constant.THEME_COLOR, // 主题颜色
-  'outOpenSearch': isLocalStorage('outOpenSearch'), // 是否在新标签页打开搜索结果
-  'outOpenBookmarks': isLocalStorage('outOpenBookmarks'), // 是否在新标签页打开书签
+  outOpenSearch: isLocalStorage('outOpenSearch'), // 是否在新标签页打开搜索结果
+  outOpenBookmarks: isLocalStorage('outOpenBookmarks'), // 是否在新标签页打开书签
 })
 // 是否显示秒
 subscribeKey(state, 'dateSeconds', (value) => {
