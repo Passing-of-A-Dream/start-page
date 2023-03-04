@@ -32,7 +32,7 @@ export function SearchBox(props: ISearchProps) {
 
   const inputValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value
-    setSearchBoxValue(value)
+    debounce((setSearchBoxValue(value) as unknown) as Function, 500)
     // 如果输入框为空，清空搜索结果
     if (!value) {
       setSearchSugrecResult(undefined)
@@ -41,9 +41,11 @@ export function SearchBox(props: ISearchProps) {
 
   React.useEffect(() => {
     if (SearchBoxValue !== '') {
-      debounce(() => Jsonp(), 200)
+      Jsonp()
     } else {
-      setSearchSugrecResult(undefined)
+      setTimeout(() => {
+        setSearchSugrecResult(undefined)
+      }, 500)
     }
     // 打印搜索结果
   }, [SearchBoxValue])
@@ -64,7 +66,7 @@ export function SearchBox(props: ISearchProps) {
     bs: 'jsonp'
   }
 
-  const Jsonp = useJSONP({
+  const Jsonp: Function = useJSONP({
     url: `https://www.baidu.com/sugrec?wd=${SearchBoxValue}&${ObjectToUrl(SearchRequestValue)}}`,
     id: 'jsonp',
     callback: (data: searchSugrecResultType) => setSearchSugrecResult(data),
@@ -119,11 +121,11 @@ export function SearchBox(props: ISearchProps) {
             onPressEnter={onPressEnter}
             bordered={false}
           />
-          {
-            (typeof searchSugrecResult?.g !== 'undefined') ? <div className="sugrec-panel">
-              {sugrecPanel(searchSugrecResult)}
-            </div> : null
-          }
+          <div className="sugrec-panel" style={{
+            height: searchSugrecResult?.g?.length ? (searchSugrecResult.g.length * 33.4) + 16 : 0,
+          }}>
+            {(typeof searchSugrecResult?.g !== 'undefined') ? sugrecPanel(searchSugrecResult) : null}
+          </div>
         </div>
       </div>
     </>

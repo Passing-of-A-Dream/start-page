@@ -1,11 +1,16 @@
-export function debounce(this: any, fn: Function, delay: number) {
+// 实现一个防抖函数，并且抛出去
+export function debounce(fn: Function, delay: number = 1000): Function {
   let timer: any = null
-  return (...args: any) => {
+  return function (this: any) {
+    let context = this
+    let args = arguments
     if (timer) {
       clearTimeout(timer)
     }
     timer = setTimeout(() => {
-      fn.apply(this, args)
+      fn.apply(context, args)
+      fn()
+      timer = null
     }, delay)
   }
 }

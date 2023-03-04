@@ -37,33 +37,27 @@
       position: absolute;
       top: calc(100% + 2px);
       left: 0;
-      width: calc(100% - var(--searchbox-border-radius));
-      // height: 0;
-      background-color: aliceblue;
+      width: 100%;
       border-radius: var(--searchbox-border-radius);
-      padding: 0 calc(var(--searchbox-border-radius) / 2);
       z-index: 100;
-      animation: heightChange 0.3s ease-in-out forwards;
-      @keyframes heightChange {
-        0% {
-          height: 0;
-        }
-        100% {
-          height: 350px;
-        }
-      }
+      height: 0;
+      overflow: hidden;
+      transition: height .3s;
       .sugrec-panel-box {
-        overflow-y: scroll;
-        height: calc(100% - 16px);
-        width: 100%;
-        padding: 8px 0;
-        // 修改滚动条样式
-        &::-webkit-scrollbar {
-          width: 2px;
-        }
-        &::-webkit-scrollbar-thumb {
-          background-color: #ccc;
-          border-radius: 1px;
+        // 高斯模糊
+        background-color: rgba($color: #fff, $alpha: 0.2);
+        backdrop-filter: blur(8px);
+        width: calc(100% - 8px);
+        padding: 8px 4px;
+        .sugrec-panel-item {
+          padding: 0 8px;
+          height: calc(334px / 10);
+          line-height: calc(334px / 10);
+          cursor: pointer;
+          border-radius: 4px;
+          &:hover {
+            background-color: #eee;
+          }
         }
       }
     }
