@@ -13,7 +13,7 @@ export function Setting(props: ISettingProps) {
   // 抽屉菜单，设置选项
   const drawerMenu = [
     {
-      label: '打开方式',
+      label: '搜索',
       key: 'openType',
     },
     {

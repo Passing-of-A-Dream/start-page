@@ -19,7 +19,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "suppressExcessPropertyErrors": true
   },
   "include": ["src", "src/*", "src/**/*.tsx", "src/**/*.ts", "src/**/*.js", "src/**/*.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]

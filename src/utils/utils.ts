@@ -1,9 +1,11 @@
-export function debounce(fun: Function, delay = 1000) {
-  let timer: number | undefined;
-  return function (this: unknown, ...args: any) {
-    clearTimeout(timer);
-    setTimeout(() => {
-      fun.apply(this, args)
+export function debounce(this: any, fn: Function, delay: number) {
+  let timer: any = null
+  return (...args: any) => {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      fn.apply(this, args)
     }, delay)
   }
 }
@@ -22,4 +24,16 @@ interface Constant {
 export const constant: Constant = {
   // 颜色
   THEME_COLOR: '#00B96B',
+}
+
+/**
+ * @param obj 需要转换为url字符串的对象
+ * @returns url字符串
+ */
+export function ObjectToUrl(obj: { [key: string]: any }) {
+  let str = ''
+  for (let key in obj) {
+    str += `${key}=${obj[key]}&`
+  }
+  return str
 }

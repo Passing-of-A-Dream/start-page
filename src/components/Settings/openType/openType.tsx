@@ -16,7 +16,7 @@ interface OpenTypeList {
 export function OpenType(props: IOpenTypeProps) {
   const snap = useSnapshot(store)
 
-  const [outOpneList, setOutOpenList] = React.useState<OpenTypeList[]>([
+  const [settingList] = React.useState<OpenTypeList[]>([
     {
       title: '新标签页打开搜索结果',
       stroeKey: 'outOpenSearch'
@@ -24,15 +24,19 @@ export function OpenType(props: IOpenTypeProps) {
     {
       title: '新标签页打开书签',
       stroeKey: 'outOpenBookmarks'
+    },
+    {
+      title: '搜索结果是否屏蔽CSDN',
+      stroeKey: 'fuckCSDN'
     }
   ])
 
   return (
     <>
       <div className='Component-setting-opentType'>
-        <SettingsBody title='打开方式'>
+        <SettingsBody title='搜索设置'>
           {
-            outOpneList.map((item, index) => {
+            settingList.map((item, index) => {
               return (
                 <div className='openType-item' key={index}>
                   <span>{item.title}</span>

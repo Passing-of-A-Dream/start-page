@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@ant-design/icons': ^5.0.1
   '@types/react': ^18.0.27
   '@types/react-dom': ^18.0.10
   '@vitejs/plugin-react': ^3.1.0
@@ -10,15 +11,18 @@ specifiers:
   react-dom: ^18.2.0
   sass: ^1.58.0
   typescript: ^4.9.3
+  use-jsonp: ^1.0.1
   valtio: ^1.10.1
   vite: ^4.1.0
   vite-plugin-compression: ^0.5.1
 
 dependencies:
+  '@ant-design/icons': 5.0.1_biqbaboplfbrettd7655fr4n2y
   antd: 5.2.0_biqbaboplfbrettd7655fr4n2y
   dayjs: 1.11.7
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  use-jsonp: 1.0.1_biqbaboplfbrettd7655fr4n2y
   valtio: 1.10.1_react@18.2.0
 
 devDependencies:
@@ -1822,6 +1826,16 @@ packages:
       escalade: 3.1.1
       picocolors: 1.0.0
     dev: true
+
+  /use-jsonp/1.0.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-XblPSq9OGlSnINoSUCQ5Q0Mw/K3DPuX80WjYkeH4hJso4tbp1JyBQEKUC82Avh+mAcWMWddwwp8PWlvpI9ElBw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /use-sync-external-store/1.2.0_react@18.2.0:
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}

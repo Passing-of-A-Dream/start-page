@@ -1,11 +1,15 @@
-*{
+* {
   margin: 0;
   padding: 0;
 }
 :root {
   font-size: 16px;
+  /* 时间文字大小 */
   --Date-font-size: 6.25rem;
   -webkit-user-select: none;
   user-select: none;
-  --general-border: 1px solid rgba(5,5,5,0.06);
+  /* border颜色 */
+  --general-border: 1px solid rgba(5, 5, 5, 0.06);
+  /* 搜索框圆角 */
+  --searchbox-border-radius: 10px;
 }
