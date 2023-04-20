@@ -32,15 +32,24 @@ export default function YDate(props: IDateProps) {
     // 把定时器的返回值赋值给timeRef.current
     timeRef.current = timeUpdate
 
+    if (document.hidden) {
+      clearInterval(timeRef.current)
+      timeRef.current = undefined
+    } else {
+      setDate(new Date())
+      timeRef.current = timeUpdate
+    }
+
     return () => {
       if (timeUpdate) {
         clearInterval(timeRef.current)
       }
     }
-  }, [snap.dateSeconds])
+  }, [snap.dateSeconds, document.hidden])
+
   return (
     <div className='Components-YDate'>
-      <div className='Date' style={{ color: props.color || '#f2f2f2' }}>
+      <div className='Date' style={{ color: props.color || '#f2f2f2' }} onClick={() => store.isSimpleMode = !snap.isSimpleMode}>
         <span className='H'>{dayjs(date).format("H")}</span>
         <span>:</span>
         <span className='M'>{dayjs(date).format("mm")}</span>

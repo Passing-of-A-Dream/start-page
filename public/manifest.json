@@ -13,10 +13,15 @@
     "http://*/*",
     "*://cn.bing.com/*",
     "*://google.com/*",
+    "https://www.baidu.com/*",
     "bookmarks",
     "storage",
     "favicon"
   ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "cookies": ["https://www.baidu.com/"],
   "externally_connectable": {
     "matches": ["http://loaclhost:5173/*"]
   },

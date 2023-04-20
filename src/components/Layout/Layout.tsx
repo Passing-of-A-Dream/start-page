@@ -1,9 +1,10 @@
 import { Button } from 'antd';
 import { useSnapshot } from 'valtio';
+import store from '@/valtio/index';
 import YDate from '../Date/Date';
 import './Layout.scss';
 import { ReactNode, useEffect, useState } from 'react';
-import { SideBar } from '../SideBar/SideBar';
+// import { SideBar } from '../SideBar/SideBar';
 import { SearchBox } from '../SearchBox/SearchBox';
 
 type YNode<T = undefined> = T extends undefined ? ReactNode : (props: T) => ReactNode
@@ -26,6 +27,7 @@ interface IOneLanguage {
 }
 
 export default function Layout(props: ILayoutProps) {
+  const snap = useSnapshot(store)
   const [oneLanguage, setOneLanguage] = useState<IOneLanguage>()
   useEffect(() => {
     fetch("https://v1.hitokoto.cn/")
@@ -37,15 +39,15 @@ export default function Layout(props: ILayoutProps) {
   return (
     <div className='Component-Layout'>
       <section className='section-of-body'>
-        <aside className='side-bar'>
+        {/* <aside className='side-bar'>
           <SideBar />
-        </aside>
+        </aside> */}
         <section className='side-body'>
           <header className='time'>
             <YDate color="#f3f3f3" />
           </header>
           <SearchBox />
-          <main>
+          <main className={`${snap.isSimpleMode ? 'main-none' : 'main-show'}`}>
             {props.children}
           </main>
           <footer className='footer'>

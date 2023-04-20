@@ -29,6 +29,7 @@ export function SearchBox(props: ISearchProps) {
 
   const [SearchBoxValue, setSearchBoxValue] = React.useState<string>('') // 搜索框的值
   const [searchSugrecResult, setSearchSugrecResult] = React.useState<searchSugrecResultType>() // 搜索框的值
+  const [isComposition, setIsComposition] = React.useState<boolean>(false) // 是否处于输入法状态
 
   const inputValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value
@@ -38,6 +39,16 @@ export function SearchBox(props: ISearchProps) {
       setSearchSugrecResult(undefined)
     }
   }
+  // const handleComposition = (e: React.CompositionEvent<HTMLInputElement>) => {
+  //   if (e.type === 'compositionend') {
+  //     setIsComposition(false)
+  //     console.log('%c [ !isComponsition ]: ', 'color: #bf2c9f; background: pink; font-size: 13px;', '!isComponsition')
+  //     // inputValueChange(e as unknown as React.ChangeEvent<HTMLInputElement>)
+  //   } else if (e.type === 'compositionstart') {
+  //     setIsComposition(true)
+  //     console.log('%c [ isComponsition ]: ', 'color: #bf2c9f; background: pink; font-size: 13px;', 'isComponsition')
+  //   }
+  // }
 
   React.useEffect(() => {
     if (SearchBoxValue !== '') {
@@ -48,7 +59,7 @@ export function SearchBox(props: ISearchProps) {
       }, 500)
     }
     // 打印搜索结果
-  }, [SearchBoxValue])
+  }, [SearchBoxValue, isComposition])
 
   const onPressEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value
@@ -67,7 +78,7 @@ export function SearchBox(props: ISearchProps) {
   }
 
   const Jsonp: Function = useJSONP({
-    url: `https://www.baidu.com/sugrec?wd=${SearchBoxValue}&${ObjectToUrl(SearchRequestValue)}}`,
+    url: `https://www.baidu.com/sugrec?wd=${SearchBoxValue}&${ObjectToUrl(SearchRequestValue)}`,
     id: 'jsonp',
     callback: (data: searchSugrecResultType) => setSearchSugrecResult(data),
     callbackParam: 'cb',
@@ -115,6 +126,7 @@ export function SearchBox(props: ISearchProps) {
           <Input
             className='SearchInput'
             placeholder='请输入搜索内容'
+            type='search'
             value={SearchBoxValue}
             onChange={(e) => inputValueChange(e)}
             suffix={suffixCom}

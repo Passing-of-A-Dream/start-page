@@ -3,7 +3,7 @@ import { useSnapshot } from 'valtio';
 import { SettingsBody } from '../settings-body/settingsBody';
 import './theme.scss';
 import store from '@/valtio/index'
-import { Button, Input } from 'antd';
+import { Button, Input, Switch, message } from 'antd';
 import { constant } from '@/utils/utils';
 
 export interface IThemeProps {
@@ -12,7 +12,10 @@ export interface IThemeProps {
 export function Theme(props: IThemeProps) {
   const snap = useSnapshot(store)
 
+  const [messageApi, contextHolder] = message.useMessage()
+
   const [colorValue, setColorValue] = React.useState('#00B96B')
+  const [backgroundImage, setBackgroundImage] = React.useState('')
 
   const change = (e: React.ChangeEvent<HTMLInputElement>) => {
     setColorValue(e.target.value)
@@ -22,6 +25,18 @@ export function Theme(props: IThemeProps) {
   // 提交修改
   const onSubmit = () => {
     store.themeColor = colorValue
+    // 校验图片地址是否合法
+    if (backgroundImage) {
+      const reg = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/
+      if (!reg.test(backgroundImage)) {
+        messageApi.error('请输入正确的图片地址')
+        return
+      }
+      document.documentElement.style.setProperty('--pagebody-backgroundImage', `url(${backgroundImage})`)
+      store.backgroundImage = backgroundImage
+      backgroundImage && messageApi.success('背景图片设置成功')
+      setBackgroundImage('')
+    }
   }
   // 重置
   const onResize = () => {
@@ -31,16 +46,26 @@ export function Theme(props: IThemeProps) {
   return (
     <>
       <div className='settings-components-theme'>
+        {contextHolder}
         <SettingsBody title='主题设置'>
           <div className="list">
             <div className="list-item">
               <span>主题颜色</span>
               <input type="color" value={colorValue} onChange={themeColorChange} />
             </div>
-            {/* <div className="list-item">
+            <div className="list-item" style={{ height: 30 }}>
               <span>背景图片</span>
-              <Input size='small' placeholder='请输入链接地址' style={{ width: 200 }} />
-            </div> */}
+              <Input size='small'
+                placeholder='请输入链接地址'
+                value={backgroundImage}
+                onChange={(e) => setBackgroundImage(e.target.value)}
+                style={{ width: 200, height: 30 }} allowClear
+              />
+            </div>
+            <div className="list-item">
+              <span>是否开启简洁模式</span>
+              <Switch checked={snap.isSimpleMode} onChange={(checked) => store.isSimpleMode = checked}></Switch>
+            </div>
           </div>
           <div className="action">
             <Button onClick={onResize}>重置</Button>

@@ -1,41 +1,25 @@
-import { constant } from "@/utils/utils";
+import { constant, cssVarModify } from "@/utils/utils";
 import { proxy } from "valtio";
 import { subscribeKey, watch } from 'valtio/utils'
+import { isLocalStorage, LocalStorageSetItem } from "./utils"
 
-type ILocalStorage = (str: string, type: string) => { booleanVal: boolean, strValue: string, is: boolean }
-// 判断传入的字符串是否是本地存储的
-const isLocalStorage: ILocalStorage = (str, type) => {
-  const val = localStorage.getItem(str)
-  if (val) {
-    if (type === 'boolean') {
-      const booleanVal = JSON.parse(val)
-      return { booleanVal, strValue: val, is: true }
-    }
-    return { booleanVal: false, strValue: val, is: true }
+interface State {
+  dateSeconds: boolean
+  themeColor: string
+  outOpenSearch: boolean
+  outOpenBookmarks: boolean
+  searchRadius: number
+  fuckCSDN: boolean
+  isSimpleMode: boolean
+  contextMenu: {
+    show: boolean
+    x: number
+    y: number
   }
-  return { booleanVal: false, strValue: '', is: false }
-}
-
-const LocalStorageSetItem = (key: string, value: string) => {
-  if (isLocalStorage(value, 'string').is) {
-    // 如果存在判断是否相同
-    if (isLocalStorage(value, 'string').strValue !== String(value)) {
-      localStorage.setItem(key, value)
-    }
-    return false
-  }
-  localStorage.setItem(key, value)
-}
-
-type State = {
-  dateSeconds: boolean,
-  themeColor: string,
-  outOpenSearch: boolean,
-  outOpenBookmarks: boolean,
-  searchRadius: number,
-  fuckCSDN: boolean,
+  modalShow: boolean
+  backgroundImage: string
   [key: string]: any
-};
+}
 
 const state = proxy<State>({
   dateSeconds: isLocalStorage('dateSeconds', 'boolean').booleanVal, // 是否显示秒
@@ -44,25 +28,27 @@ const state = proxy<State>({
   outOpenBookmarks: isLocalStorage('outOpenBookmarks', 'boolean').booleanVal, // 是否在新标签页打开书签
   searchRadius: Number(isLocalStorage('searchRadius', 'string').strValue), // 搜索框圆角
   fuckCSDN: isLocalStorage('fuckcsdn', 'boolean').booleanVal, // 搜索结果是否屏蔽CSDN
+  isSimpleMode: isLocalStorage('isSimpleMode', 'boolean').booleanVal,
+  contextMenu: {
+    show: false,
+    x: 0,
+    y: 0,
+  },
+  modalShow: false,
+  backgroundImage: isLocalStorage('backgroundImage', 'string').strValue,
 })
 // 是否显示秒
-subscribeKey(state, 'dateSeconds', (value) => {
-  localStorage.setItem('dateSeconds', JSON.stringify(value))
-})
+subscribeKey(state, 'dateSeconds', (value) => LocalStorageSetItem('dateSeconds', value))
 // 是否在新标签页打开
-subscribeKey(state, 'outOpenSearch', (value) => {
-  localStorage.setItem('outOpenSearch', JSON.stringify(value))
-})
-subscribeKey(state, 'outOpenBookmarks', (value) => {
-  localStorage.setItem('outOpenBookmarks', JSON.stringify(value))
-})
+subscribeKey(state, 'outOpenSearch', (value) => LocalStorageSetItem('outOpenSearch', value))
+subscribeKey(state, 'outOpenBookmarks', (value) => LocalStorageSetItem('outOpenBookmarks', value))
 // 搜索框圆角
-subscribeKey(state, 'searchRadius', (value) => {
-  LocalStorageSetItem('searchRadius', JSON.stringify(value))
-})
+subscribeKey(state, 'searchRadius', (value) => LocalStorageSetItem('searchRadius', value))
 // 搜索结果是否屏蔽CSDN
-subscribeKey(state, 'fuckCSDN', (value) => {
-  LocalStorageSetItem('fuckcsdn', JSON.stringify(value))
-})
+subscribeKey(state, 'fuckCSDN', (value) => LocalStorageSetItem('fuckcsdn', value))
+// 是否是简洁模式
+subscribeKey(state, "isSimpleMode", (value) => LocalStorageSetItem("isSimpleMode", value))
+// 背景图片
+subscribeKey(state, 'backgroundImage', (value) => LocalStorageSetItem("backgroundImage", value))
 
 export default state

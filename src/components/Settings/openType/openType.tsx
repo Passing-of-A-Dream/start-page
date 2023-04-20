@@ -16,7 +16,7 @@ interface OpenTypeList {
 export function OpenType(props: IOpenTypeProps) {
   const snap = useSnapshot(store)
 
-  const [settingList] = React.useState<OpenTypeList[]>([
+  const settingList: OpenTypeList[] = [
     {
       title: '新标签页打开搜索结果',
       stroeKey: 'outOpenSearch'
@@ -29,7 +29,7 @@ export function OpenType(props: IOpenTypeProps) {
       title: '搜索结果是否屏蔽CSDN',
       stroeKey: 'fuckCSDN'
     }
-  ])
+  ]
 
   return (
     <>

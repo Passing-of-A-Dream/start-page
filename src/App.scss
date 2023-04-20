@@ -7,7 +7,8 @@
   height: calc(100vh - calc(2 * var(--pagebody-padding)));
   width: calc(100vw - calc(2 * var(--pagebody-padding)));
   padding: var(--pagebody-padding);
-  background: var(--pagebody-backgroundImage) no-repeat 0 0 fixed;
+  background: var(--pagebody-backgroundImage) no-repeat;
+  background-size: cover;
   overflow: hidden;
   // css变量
   --aside-width: 64px;

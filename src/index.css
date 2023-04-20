@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+li {
+  list-style: none;
+}
 :root {
   font-size: 16px;
   /* 时间文字大小 */
@@ -10,6 +13,13 @@
   user-select: none;
   /* border颜色 */
   --general-border: 1px solid rgba(5, 5, 5, 0.06);
-  /* 搜索框圆角 */
+  /* 搜索框 */
   --searchbox-border-radius: 10px;
+  --searchbox-height: 50px;
+  --searchbox-bg-color: #f0f8ff;
+  /* layout */
+  --layout-header-height: 20vh;
+  --layout-footer-height: 40px;
+  --layout-body-display: grid;
+  --layout-animation-time: .24s
 }

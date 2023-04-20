@@ -1,0 +1,40 @@
+.context-menu {
+  position: fixed;
+  z-index: 99999999;
+  background-color: rgba($color: #fff, $alpha: 0.2);
+  backdrop-filter: blur(8px);
+  outline: none;
+
+  border-radius: 2px;
+  box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.2);
+  // box-shadow: 1px 1px 14px -1px rgba(0, 0, 0, 0.3);
+
+  overflow: hidden;
+  padding: 10px 5px;
+  border-radius: 5px;
+  height: 0;
+  transition: height 0.3s;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
+  ul > li {
+    height: 30px;
+    border-radius: 4px;
+    width: calc(100% - 5px);
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    &:hover {
+      box-shadow: 2px 2px 5px -2px #868686;
+      background-color: rgba($color: #ececec, $alpha: 0.5);
+    }
+  }
+}
