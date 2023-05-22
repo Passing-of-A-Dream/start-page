@@ -15,7 +15,7 @@
 
 ```pnpm build```
 
-out_dir: start-page-dist
+`out_dir: start-page-dist`
 
 ### 设置
  - 搜索设置
