@@ -8,6 +8,9 @@
  - chrome浏览器
  - edge浏览器
 
+### 预览
+`https://passing-of-a-dream.github.io/startpage/`
+
 ### 初始化 & 启动
 ```pnpm install && pnpm dev```
 
