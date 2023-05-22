@@ -19,7 +19,9 @@ li {
   --searchbox-bg-color: #f0f8ff;
   /* layout */
   --layout-header-height: 20vh;
-  --layout-footer-height: 40px;
+  --layout-footer-height: 60px;
   --layout-body-display: grid;
-  --layout-animation-time: .24s
+  --layout-animation-time: .24s;
+  /* body */
+  --body-component-bg-color: rgba(248, 248, 248, 0.6);
 }

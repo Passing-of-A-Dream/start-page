@@ -9,7 +9,7 @@ export interface ISettingProps {
   drawerOnClose: (e: React.MouseEvent | React.KeyboardEvent) => void;
 }
 
-export function Setting(props: ISettingProps) {
+export default function Setting(props: ISettingProps) {
   // 抽屉菜单，设置选项
   const drawerMenu = [
     {

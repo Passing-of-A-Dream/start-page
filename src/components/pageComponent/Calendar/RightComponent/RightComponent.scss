@@ -1,0 +1,21 @@
+.RightComponent[ycaledar-right] {
+  height: 100%;
+  width: 100%;
+  .content {
+    .title {
+      text-align: center;
+      padding: 10px 0;
+      font-size: 16px;
+    }
+    .list {
+      .no-data {
+        padding: 20px;
+        text-align: center;
+      }
+    }
+    .button {
+      display: flex;
+      justify-content: end;
+    }
+  }
+}

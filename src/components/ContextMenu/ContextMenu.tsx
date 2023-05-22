@@ -2,7 +2,6 @@ import { useSnapshot } from 'valtio'
 import './ContextMenu.scss'
 import store from "@/valtio/index"
 import ReactDOM from 'react-dom'
-import { useRef } from 'react'
 
 interface IProps {
   handleClick: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, arg1: string) => void
@@ -25,14 +24,18 @@ export default function ContextMenu(props: IProps) {
   if (y > innerHeight - menuHeight) {
     y -= (menuHeight + 20)
   }
+  const heightandwidth = (arg1:number) => {
+    if (snap.contextMenu.show) {
+      return arg1
+    }
+    return 0
+  }
   const style = {
     display: snap.contextMenu.show ? "block" : "none",
     left: x,
     top: y,
-    "--menu-height": menuHeight + "px",
-    "--menu-width": menuWidth + "px",
-    height: menuHeight,
-    width: menuWidth
+    "--menu-height": heightandwidth(menuHeight) + "px",
+    "--menu-width": heightandwidth(menuWidth) + "px",
   }
   // 把dom挂载到body上
   return ReactDOM.createPortal(

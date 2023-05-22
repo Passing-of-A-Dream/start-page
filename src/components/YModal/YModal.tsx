@@ -9,6 +9,7 @@ interface YModalProps {
   visible: boolean
   closeClick?: ((e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void) | undefined
   children?: YNode // body
+  className?: string
 }
 
 export default function YModal(props: YModalProps) {
@@ -29,10 +30,10 @@ export default function YModal(props: YModalProps) {
         footer={null}
         width={800}
         // style={{ backgroundColor: "transparent" }}
-        wrapClassName="bookmarks-modal"
+        wrapClassName="ymodal-modal"
         mask={false}
       >
-        <div className="bookmarks-content-container" bookmarks-container="">
+        <div className={`ymodal-content-container${props?.className ? " " + props?.className : ''}`} ymodal-container="">
           {props.children}
         </div>
       </Modal>

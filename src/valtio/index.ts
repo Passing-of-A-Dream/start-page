@@ -18,6 +18,9 @@ interface State {
   }
   modalShow: boolean
   backgroundImage: string
+  oneLanguage: boolean
+  bingImage: boolean
+  backImageBlur: boolean
   [key: string]: any
 }
 
@@ -36,6 +39,9 @@ const state = proxy<State>({
   },
   modalShow: false,
   backgroundImage: isLocalStorage('backgroundImage', 'string').strValue,
+  oneLanguage: isLocalStorage('oneLanguage', 'boolean').booleanVal,
+  bingImage: isLocalStorage("bingImage", "boolean").booleanVal,
+  backImageBlur: isLocalStorage("backImageBlur", "boolean").booleanVal
 })
 // 是否显示秒
 subscribeKey(state, 'dateSeconds', (value) => LocalStorageSetItem('dateSeconds', value))
@@ -50,5 +56,11 @@ subscribeKey(state, 'fuckCSDN', (value) => LocalStorageSetItem('fuckcsdn', value
 subscribeKey(state, "isSimpleMode", (value) => LocalStorageSetItem("isSimpleMode", value))
 // 背景图片
 subscribeKey(state, 'backgroundImage', (value) => LocalStorageSetItem("backgroundImage", value))
+// 底部一言是否点击切换
+subscribeKey(state, 'oneLanguage', (value) => LocalStorageSetItem("oneLanguage", value))
+// 每日bing图
+subscribeKey(state, "bingImage", (value) => LocalStorageSetItem("bingImage", value))
+// 背景模糊
+subscribeKey(state, "backImageBlur", (value) => LocalStorageSetItem("backImageBlur", value))
 
 export default state

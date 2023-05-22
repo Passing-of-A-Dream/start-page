@@ -1,6 +1,8 @@
 .Component-Layout {
   height: 100vh;
   width: 100vw;
+  position: absolute;
+  z-index: 9;
   .section-of-body {
     height: 100%;
     width: 100%;
@@ -60,19 +62,19 @@
         align-items: center;
         justify-content: center;
         .one-language {
-          margin: 0 10px;
           font-size: 16px;
           cursor: pointer;
           &:hover {
-            color: #fff;
             span:last-child {
               opacity: 1;
             }
           }
 
+          height: 100%;
           display: flex;
           flex-direction: column;
           align-items: center;
+          justify-content: space-around;
 
           span {
             &:last-child {

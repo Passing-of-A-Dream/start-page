@@ -1,7 +1,7 @@
 .context-menu {
   position: fixed;
   z-index: 99999999;
-  background-color: rgba($color: #fff, $alpha: 0.2);
+  background-color: rgba($color: #e6e6e6, $alpha: 0.5);
   backdrop-filter: blur(8px);
   outline: none;
 
@@ -24,6 +24,18 @@
   -ms-user-select: none;
   -o-user-select: none;
   user-select: none;
+
+  animation: init .1s ease-in-out forwards;
+  @keyframes init {
+    0% {
+      height: 0;
+      width: 0;
+    }
+    100% {
+      height: var(--menu-height);
+      width: var(--menu-width);
+    }
+  }
 
   ul > li {
     height: 30px;

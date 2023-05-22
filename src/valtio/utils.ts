@@ -1,4 +1,4 @@
-type ILocalStorage = (str: string, type: string) => { booleanVal: boolean, strValue: string, is: boolean }
+type ILocalStorage = (str: string, type: "string" | "boolean") => { booleanVal: boolean, strValue: string, is: boolean }
 // 判断传入的字符串是否是本地存储的
 const isLocalStorage: ILocalStorage = (str, type) => {
   const val = localStorage.getItem(str)

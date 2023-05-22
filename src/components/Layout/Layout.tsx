@@ -6,6 +6,7 @@ import './Layout.scss';
 import { ReactNode, useEffect, useState } from 'react';
 // import { SideBar } from '../SideBar/SideBar';
 import { SearchBox } from '../SearchBox/SearchBox';
+import { cssVarModify } from '@/utils/utils';
 
 type YNode<T = undefined> = T extends undefined ? ReactNode : (props: T) => ReactNode
 export interface ILayoutProps {
@@ -30,14 +31,31 @@ export default function Layout(props: ILayoutProps) {
   const snap = useSnapshot(store)
   const [oneLanguage, setOneLanguage] = useState<IOneLanguage>()
   useEffect(() => {
+    getOneLanguage();
+    () => { }
+  }, [])
+  function getOneLanguage() {
     fetch("https://v1.hitokoto.cn/")
       .then(res => res.json())
       .then(res => {
         setOneLanguage(res)
       })
-  }, [])
+      .catch(err => {
+        cssVarModify('--pagebody-backgroundImage', 'url("/background.jfif")')
+      })
+  }
+  const oneLanguageStyle: React.CSSProperties = {
+    mixBlendMode: "difference"
+  }
+  function oneLanguageClick() {
+    if (snap.oneLanguage) {
+      getOneLanguage();
+    }
+  }
   return (
-    <div className='Component-Layout'>
+    <div className='Component-Layout' style={{
+      backdropFilter: !snap.backImageBlur ? 'blur(0px)' : 'blur(3.3px)'
+    }}>
       <section className='section-of-body'>
         {/* <aside className='side-bar'>
           <SideBar />
@@ -51,9 +69,19 @@ export default function Layout(props: ILayoutProps) {
             {props.children}
           </main>
           <footer className='footer'>
-            <div className='one-language'>
-              <span>{oneLanguage?.hitokoto}</span>
-              <span>&mdash;{oneLanguage?.from + '-' + oneLanguage?.from_who}</span>
+            <div className='one-language' style={oneLanguageStyle} onClick={oneLanguageClick}>
+              <span>{oneLanguage ? oneLanguage?.hitokoto : "无法获取一言"}</span>
+              <span>
+                &mdash;
+                {
+                  oneLanguage ?
+                    (
+                      (oneLanguage?.from ? oneLanguage?.from : '未知') +
+                      (oneLanguage?.from_who ? '-' + oneLanguage?.from_who : '')
+                    ) :
+                    "请检查网络"
+                }
+              </span>
             </div>
           </footer>
         </section>
