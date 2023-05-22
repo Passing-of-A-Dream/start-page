@@ -9,7 +9,7 @@
  - edge浏览器
 
 ### 预览
-`https://passing-of-a-dream.github.io/startpage/`
+[预览地址](https://yuanzhaohao.github.io/start-page/)
 
 ### 初始化 & 启动
 ```pnpm install && pnpm dev```

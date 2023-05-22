@@ -62,25 +62,50 @@
         align-items: center;
         justify-content: center;
         .one-language {
+          margin-bottom: 5px;
+          border-radius: 5px;
+          padding: 8px;
+          // 阴影 浅灰色
+          // box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+          background-color: rgba(255, 255, 255, 0.3);
+          -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+          color: #1a1a1a;
+          position: absolute;
+          overflow: hidden;
+
+          .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+            z-index: -1;
+          }
+
           font-size: 16px;
           cursor: pointer;
           &:hover {
             span:last-child {
-              opacity: 1;
+              // opacity: 1;
+              display: block;
             }
           }
 
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-around;
-
           span {
+            // 给display做动画
+            transition: all 0.3s;
+            margin: 3px 0;
+            text-align: center;
             &:last-child {
-              opacity: 0;
-              transition: all 0.3s;
+              // opacity: 0;
+              display: none;
+              // transition: all 0.3s;
               font-size: 12px;
+              // 给display做动画
+              animation: displayShow var(--layout-animation-time) ease-in
+                forwards;
             }
           }
         }

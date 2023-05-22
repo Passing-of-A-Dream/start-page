@@ -44,9 +44,6 @@ export default function Layout(props: ILayoutProps) {
         cssVarModify('--pagebody-backgroundImage', 'url("/background.jfif")')
       })
   }
-  const oneLanguageStyle: React.CSSProperties = {
-    mixBlendMode: "difference"
-  }
   function oneLanguageClick() {
     if (snap.oneLanguage) {
       getOneLanguage();
@@ -69,7 +66,8 @@ export default function Layout(props: ILayoutProps) {
             {props.children}
           </main>
           <footer className='footer'>
-            <div className='one-language' style={oneLanguageStyle} onClick={oneLanguageClick}>
+            <div className='one-language' onClick={oneLanguageClick}>
+              <div className="background"></div>
               <span>{oneLanguage ? oneLanguage?.hitokoto : "无法获取一言"}</span>
               <span>
                 &mdash;
