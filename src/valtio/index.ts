@@ -36,7 +36,7 @@ const state = proxy<State>({
     show: false,
     x: 0,
     y: 0,
-  },
+  },// 右键菜单的参数
   modalShow: false,
   backgroundImage: isLocalStorage('backgroundImage', 'string').strValue,
   oneLanguage: isLocalStorage('oneLanguage', 'boolean').booleanVal,

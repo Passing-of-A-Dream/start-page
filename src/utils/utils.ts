@@ -91,6 +91,13 @@ export const cssVarModify = (variable: string, value: string, isEven: boolean = 
   }
 }
 
+/**
+ * 右键点击函数
+ * @param e 右键点击获取的dom
+ * @param snap vails仓库
+ * @param store valtio
+ * @returns none
+ */
 export function showContextMenu(e: MouseEvent, snap: any, store: any) {
   const target = e.target as HTMLElement
   // 如果点击的不是class为time, start-page-body-index, footer的元素，不显示右键菜单
@@ -112,6 +119,11 @@ export function showContextMenu(e: MouseEvent, snap: any, store: any) {
   }
 }
 
+/**
+ * 获取当前是周几
+ * @param date 时间参数
+ * @returns 返回当前周数
+ */
 export function getWeek(date: string) {
   // 获取周几
   const week = dayjs(date).day()
@@ -131,10 +143,15 @@ export function getWeek(date: string) {
     case 6:
       return '星期六'
     default:
-      return ''
+      return week;
   }
 }
 
+/**
+ * 图片转换为base64编码并返回
+ * @param url 图片链接
+ * @returns 图片转换后的base64编码
+ */
 export function getBase64Image(url: string) {
   return new Promise((resolve, reject) => {
     let canvas = document.createElement('canvas')
