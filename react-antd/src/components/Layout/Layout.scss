@@ -1,0 +1,115 @@
+.Component-Layout {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: 9;
+  .section-of-body {
+    height: 100%;
+    width: 100%;
+    // display: grid;
+    // grid-template-columns: var(--aside-width) calc(100% - var(--aside-width));
+    // .side-bar {
+    //   height: auto;
+    //   display: flex;
+    //   align-items: center;
+    //   // 改变文字方向
+    //   // writing-mode: vertical-rl;
+    //   margin-left: 4px;
+    // }
+    .side-body {
+      width: 100%;
+      display: grid;
+      grid-template-rows:
+        var(--layout-header-height) var(--searchbox-height) calc(
+          100vh - var(--layout-header-height) - var(--searchbox-height) -
+            var(--layout-footer-height)
+        )
+        var(--layout-footer-height);
+      .time {
+        width: 100%;
+        display: grid;
+        justify-content: center;
+        align-items: end;
+      }
+      @keyframes displayNone {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          display: none;
+        }
+      }
+      @keyframes displayShow {
+        0% {
+          opacity: 0;
+          display: block;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .main-none {
+        animation: displayNone var(--layout-animation-time) ease-out forwards;
+      }
+      .main-show {
+        animation: displayShow var(--layout-animation-time) ease-in forwards;
+      }
+      .footer {
+        color: 1rem;
+        color: #f2f2f2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .one-language {
+          margin-bottom: 5px;
+          border-radius: 5px;
+          padding: 8px;
+          // 阴影 浅灰色
+          // box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+          background-color: rgba(255, 255, 255, 0.3);
+          -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+          color: #1a1a1a;
+          position: absolute;
+          overflow: hidden;
+
+          .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.5);
+            z-index: -1;
+          }
+
+          font-size: 16px;
+          cursor: pointer;
+          &:hover {
+            span:last-child {
+              // opacity: 1;
+              display: block;
+            }
+          }
+
+          span {
+            // 给display做动画
+            transition: all 0.3s;
+            margin: 3px 0;
+            text-align: center;
+            &:last-child {
+              // opacity: 0;
+              display: none;
+              // transition: all 0.3s;
+              font-size: 12px;
+              // 给display做动画
+              animation: displayShow var(--layout-animation-time) ease-in
+                forwards;
+            }
+          }
+        }
+      }
+    }
+  }
+}

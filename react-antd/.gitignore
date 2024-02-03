@@ -21,13 +21,9 @@ start-page-dist
 .vscode/*
 !.vscode/extensions.json
 .idea
-.vs
 .DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-.idea/vcs.xml
-*/.idea
-*/.vscode

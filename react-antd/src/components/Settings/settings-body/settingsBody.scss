@@ -1,0 +1,19 @@
+.settings-components-body {
+  background-color: #ffffff;
+  padding: 6px;
+  border-radius: 5px;
+  .header {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 0.625rem;
+    border-bottom: var(--general-border);
+    span {
+      margin-left: 5px;
+    }
+  }
+  .main {
+    padding: 5px;
+  }
+}

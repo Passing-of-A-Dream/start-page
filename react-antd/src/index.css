@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+:root {
+  font-size: 16px;
+  /* 时间文字大小 */
+  --Date-font-size: 6.25rem;
+  -webkit-user-select: none;
+  user-select: none;
+  /* border颜色 */
+  --general-border: 1px solid rgba(5, 5, 5, 0.06);
+  /* 搜索框 */
+  --searchbox-border-radius: 10px;
+  --searchbox-height: 50px;
+  --searchbox-bg-color: #f0f8ff;
+  /* layout */
+  --layout-header-height: 20vh;
+  --layout-footer-height: 60px;
+  --layout-body-display: grid;
+  --layout-animation-time: .24s;
+  /* body */
+  --body-component-bg-color: rgba(248, 248, 248, 0.6);
+}
