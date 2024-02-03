@@ -1,0 +1,17 @@
+.start-page-body-index {
+  --height: 40px;
+  // 修改滚动条
+  &[data-page-body] {
+    height: calc(100% - var(--height));
+    margin: var(--height) var(--height) 0 var(--height);
+    // display: var(--layout-body-display);
+    transition: display .3s;
+    display: grid;
+    grid-template-rows: repeat(auto-fill, calc(calc(100% / 10) - 10px));
+    grid-template-columns: repeat(auto-fill, calc(calc(100% / 20) - 10px));
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    place-items: center;
+    padding: 5px 10px;
+  }
+}
