@@ -8,6 +8,10 @@
     "32": "icons/start.png"
   },
   "author": "Passing-of-A-Dream",
+  "background": {
+    "script": ["background.js"],
+    "persistent": true
+  },
   "permissions": [
     "https://*/*",
     "http://*/*",
@@ -19,7 +23,7 @@
     "favicon"
   ],
   "content_security_policy": {
-    "extension_pages": "script-src 'self'; object-src 'self'"
+    "extension_pages": "script-src 'self'; object-src 'self' https://www.baidu.com/"
   },
   "cookies": ["https://www.baidu.com/"],
   "externally_connectable": {

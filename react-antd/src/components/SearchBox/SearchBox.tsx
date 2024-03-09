@@ -52,7 +52,8 @@ export function SearchBox(props: ISearchProps) {
 
   React.useEffect(() => {
     if (SearchBoxValue !== '') {
-      Jsonp()
+      // Jsonp()
+      chrome.runtime.sendMessage({ action: 'search', text: SearchBoxValue })
     } else {
       setTimeout(() => {
         setSearchSugrecResult(undefined)

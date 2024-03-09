@@ -58,10 +58,16 @@ function App() {
   })
   const [drawerVisible, setDrawerVisible] = useState(false)
 
-  const contextMenuClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, item: string) => {
-    if (item === '设置') {
-      setDrawerVisible(true)
-    }
+  const MENU_MAP = {
+    '设置': (value: boolean) => setDrawerVisible(value),
+  } as const;
+
+  type MenuMap = typeof MENU_MAP;
+
+  const menuContent: (keyof MenuMap)[] = Object.keys(MENU_MAP) as (keyof MenuMap)[]
+
+  const contextMenuClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, item: keyof MenuMap) => {
+    MENU_MAP[item](true)
   }
 
   return (
@@ -70,7 +76,7 @@ function App() {
         <img src={snap.backgroundImage} alt="" />
       </div>
       <ConfigProvider theme={themeConfig} locale={zhCN}>
-        <ContextMenu handleClick={contextMenuClick} />
+        <ContextMenu handleClick={(e, arg1) => contextMenuClick(e, arg1 as keyof MenuMap)} menuContent={menuContent} />
         <Layout>
           <Index />
         </Layout>

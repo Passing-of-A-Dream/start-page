@@ -3,11 +3,13 @@ import './ContextMenu.scss'
 import store from "@/valtio/index"
 import ReactDOM from 'react-dom'
 
-interface IProps {
-  handleClick: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, arg1: string) => void
+interface ContextMenuProps {
+  handleClick: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, arg1: string) => void // 点击事件
+  menuContent: string[] // 菜单内容
 }
 
-export default function ContextMenu(props: IProps) {
+export default function ContextMenu(props: ContextMenuProps) {
+  const SAFE_DISTANCE = 20 // 防止菜单被遮挡
   const snap = useSnapshot(store)
   let { x, y } = snap.contextMenu // 获取鼠标位置
   // 获取视口宽高
@@ -15,13 +17,13 @@ export default function ContextMenu(props: IProps) {
   // 菜单宽高
   let menuHeight = 0
   let menuWidth = 100
-  const menuContent = ['设置']
+  const menuContent = props.menuContent
   menuHeight = menuContent.length * 30
   // 判断是否超出视口
   if (x > innerWidth - menuWidth) {
     x -= (menuWidth + 10)
   }
-  if (y > innerHeight - menuHeight) {
+  if (y > innerHeight - menuHeight - SAFE_DISTANCE) {
     y -= (menuHeight + 20)
   }
   const heightandwidth = (arg1:number) => {
